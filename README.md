@@ -4,7 +4,7 @@ Dự án này cung cấp một quy trình đầy đủ để phát hiện và ph
 
 > **Ghi chú**: Để tái tạo nhanh kết quả, bạn có thể sử dụng file `training-inference.ipynb`.
 
-## Tính năng
+## Kỹ thuật
 
 - **Xử lý Dữ liệu**: Phân chia hình ảnh độ phân giải cao với độ chồng lấp để phát hiện tốt hơn côn trùng ở vùng biên
 - **Huấn luyện Mô hình**: Huấn luyện mô hình YOLOv11 với tham số tối ưu cho việc phát hiện côn trùng nhỏ
@@ -55,7 +55,7 @@ Yellow Sticky Trap/
 
 ### Sử dụng Notebook
 
-Cách đơn giản nhất để chạy toàn bộ quy trình từ tiền xử lý đến huấn luyện và dự đoán là sử dụng notebook `training-inference.ipynb`:
+Cách đơn giản nhất để chạy toàn bộ quy trình từ tiền xử lý đến huấn luyện và dự đoán là sử dụng notebook `training-inference.ipynb` trên cloud như colab, kaggle:
 
 1. Mở notebook trong Jupyter hoặc Colab
 2. Chạy các ô theo thứ tự để xử lý dữ liệu, huấn luyện và dự đoán
