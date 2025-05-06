@@ -1,0 +1,1 @@
+"""Models module for Yellow Sticky Trap insect detection"""

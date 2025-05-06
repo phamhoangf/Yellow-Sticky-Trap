@@ -1,0 +1,28 @@
+# Default configuration for Yellow Sticky Trap Insect Detection
+
+# Dataset parameters
+classes: ['WF', 'MR', 'NC']  # Whitefly, Mealybug, and Mite
+tile_size: 1280
+overlap: 100
+train_split: 0.9
+batch_size: 5
+
+# Model parameters
+model_type: 'yolo11s'
+epochs: 30
+img_size: 1280
+confidence_threshold: 0.25
+iou_threshold: 0.7
+
+# Training parameters
+augmentation:
+  mosaic: 1.0
+  translate: 0.1
+  scale: 0.5
+  fliplr: 0.5
+  hsv_h: 0.015
+  hsv_s: 0.8
+  hsv_v: 0.4
+
+# Paths
+output_dir: 'runs/insect_detector'

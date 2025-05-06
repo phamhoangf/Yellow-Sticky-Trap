@@ -1,0 +1,1 @@
+"""Utility functions for Yellow Sticky Trap insect detection"""
