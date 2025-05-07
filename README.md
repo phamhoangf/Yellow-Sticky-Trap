@@ -23,18 +23,21 @@ Dự án này cung cấp một quy trình đầy đủ để phát hiện và ph
 Yellow Sticky Trap/
 ├── config/                   # File cấu hình
 │   └── default.yaml          # Cấu hình mặc định
-├── notebooks/                # Jupyter notebooks để khám phá
 ├── src/                      # Mã nguồn
 │   ├── data/                 # Module xử lý dữ liệu
+│   │   ├── __init__.py
 │   │   └── preprocessing.py  # Phân chia và tiền xử lý hình ảnh
 │   ├── models/               # Mã liên quan đến mô hình
+│   │   ├── __init__.py
 │   │   ├── train.py          # Hàm huấn luyện
 │   │   └── inference.py      # Hàm suy luận
-│   └── utils/                # Tiện ích
-│       └── eda.py            # Công cụ phân tích dữ liệu khám phá
-├── main.py                   # Điểm vào CLI chính
-├── yolo-nn.ipynb             # Notebook gốc để tái tạo nhanh kết quả
-├── requirements.txt          # Các thư viện phụ thuộc
+│   ├── utils/                # Tiện ích
+│   │   ├── __init__.py
+│   │   └── eda.py            # Công cụ phân tích dữ liệu khám phá
+│   ├── main.py               # Điểm vào CLI chính
+│   ├── requirements.txt      # Các thư viện phụ thuộc
+│   └── __init__.py
+├── training-inference.ipynb  # Notebook để tái tạo nhanh kết quả
 ├── LICENSE                   # File giấy phép
 └── README.md                 # Tài liệu dự án
 ```
@@ -48,7 +51,7 @@ Yellow Sticky Trap/
 
 2. Cài đặt các thư viện phụ thuộc:
    ```
-   pip install -r requirements.txt
+   pip install -r src/requirements.txt
    ```
 
 ## Sử dụng
@@ -57,7 +60,7 @@ Yellow Sticky Trap/
 
 Cách đơn giản nhất để chạy toàn bộ quy trình từ tiền xử lý đến huấn luyện và dự đoán là sử dụng notebook `training-inference.ipynb`:
 
-1. Mở notebook trong Jupyter hoặc Colab
+1. Mở notebook trong Jupyter, Colab hoặc Kaggle
 2. Chạy các ô theo thứ tự để xử lý dữ liệu, huấn luyện và dự đoán
 
 ### Sử dụng Command Line
@@ -67,7 +70,7 @@ Cách đơn giản nhất để chạy toàn bộ quy trình từ tiền xử l�
 Để chuẩn bị dataset bằng cách phân chia hình ảnh:
 
 ```bash
-python main.py prepare --img-dir /đường/dẫn/ảnh --ann-dir /đường/dẫn/annotations --output-dir /đường/dẫn/đầu/ra --config config/default.yaml
+python src/main.py prepare --img-dir /đường/dẫn/ảnh --ann-dir /đường/dẫn/annotations --output-dir /đường/dẫn/đầu/ra --config config/default.yaml
 ```
 
 #### Phân tích dữ liệu
@@ -75,7 +78,7 @@ python main.py prepare --img-dir /đường/dẫn/ảnh --ann-dir /đường/d�
 Để chạy phân tích dữ liệu khám phá trên dataset:
 
 ```bash
-python main.py eda --img-dir /đường/dẫn/ảnh --ann-dir /đường/dẫn/annotations
+python src/main.py eda --img-dir /đường/dẫn/ảnh --ann-dir /đường/dẫn/annotations
 ```
 
 #### Huấn luyện mô hình
@@ -83,7 +86,7 @@ python main.py eda --img-dir /đường/dẫn/ảnh --ann-dir /đường/dẫn/a
 Để huấn luyện mô hình YOLOv11:
 
 ```bash
-python main.py train --data /đường/dẫn/đến/insects.yaml --output runs/my_model --epochs 30
+python src/main.py train --data /đường/dẫn/đến/insects.yaml --output runs/my_model --epochs 30
 ```
 
 #### Đánh giá mô hình
@@ -91,7 +94,7 @@ python main.py train --data /đường/dẫn/đến/insects.yaml --output runs/m
 Để đánh giá một mô hình đã huấn luyện:
 
 ```bash
-python main.py evaluate --model /đường/dẫn/đến/best.pt --data /đường/dẫn/đến/data.yaml
+python src/main.py evaluate --model /đường/dẫn/đến/best.pt --data /đường/dẫn/đến/data.yaml
 ```
 
 #### Suy luận
@@ -99,7 +102,7 @@ python main.py evaluate --model /đường/dẫn/đến/best.pt --data /đườn
 Để chạy suy luận trên một hình ảnh mới:
 
 ```bash
-python main.py infer --model /đường/dẫn/đến/best.pt --image /đường/dẫn/đến/ảnh.jpg --output /đường/dẫn/đến/kết_quả.jpg
+python src/main.py infer --model /đường/dẫn/đến/best.pt --image /đường/dẫn/đến/ảnh.jpg --output /đường/dẫn/đến/kết_quả.jpg
 ```
 
 ## Giấy phép
