@@ -47,7 +47,6 @@ Yellow Sticky Trap/
 1. Clone repository này:
    ```
    git clone https://github.com/phamhoangf/Yellow-Sticky-Trap.git
-   cd src
    ```
 
 2. Cài đặt các thư viện phụ thuộc:
