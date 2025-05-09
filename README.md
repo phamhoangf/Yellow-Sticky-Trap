@@ -110,6 +110,7 @@ python src/main.py infer --model /đường/dẫn/đến/best.pt --image /đư�
 ```
 
 #### Giao diện Streamlit
+Link: https://yellowstickytrap.streamlit.app/
 
 Để khởi chạy giao diện người dùng Streamlit:
 
