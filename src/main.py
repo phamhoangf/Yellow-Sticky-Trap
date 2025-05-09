@@ -20,7 +20,7 @@ def parse_args():
     prep_parser.add_argument("--img-dir", required=True, help="Directory with source images")
     prep_parser.add_argument("--ann-dir", required=True, help="Directory with source annotations")
     prep_parser.add_argument("--output-dir", required=True, help="Output directory for processed data")
-    prep_parser.add_argument("--config", default="../config/default.yaml", help="Configuration file")
+    prep_parser.add_argument("--config", default="config/default.yaml", help="Configuration file")
     
     # EDA command
     eda_parser = subparsers.add_parser("eda", help="Run exploratory data analysis")
@@ -30,7 +30,7 @@ def parse_args():
     # Training command
     train_parser = subparsers.add_parser("train", help="Train insect detection model")
     train_parser.add_argument("--data", required=True, help="Path to data YAML file")
-    train_parser.add_argument("--output", default="../runs/insect_detector", help="Output directory")
+    train_parser.add_argument("--output", default="runs/insect_detector", help="Output directory")
     train_parser.add_argument("--epochs", type=int, default=30, help="Number of training epochs")
     train_parser.add_argument("--img-size", type=int, default=1280, help="Image size for training")
     
@@ -48,7 +48,7 @@ def parse_args():
     infer_parser.add_argument("--overlap", type=int, default=100, help="Overlap between tiles")
     infer_parser.add_argument("--conf", type=float, default=0.25, help="Confidence threshold")
     infer_parser.add_argument("--iou", type=float, default=0.7, help="IoU threshold for NMS")
-    infer_parser.add_argument("--config", default="../config/default.yaml", help="Configuration file with class names")
+    infer_parser.add_argument("--config", default="config/default.yaml", help="Configuration file with class names")
     
     return parser.parse_args()
 
@@ -97,14 +97,13 @@ def main():
     elif args.command == "evaluate":
         metrics = evaluate_model(args.model, args.data)
         print(f"Evaluation results: {metrics}")
-    
     elif args.command == "infer":
         # Load class names from config
         config = load_config(args.config)
         class_names = config.get('classes', None)
         
         # Run inference
-        result_image, _, _, _, _ = predict_on_tiled_image(
+        result_image, keep_indices, boxes, classes, scores = predict_on_tiled_image(
             model_path=args.model,
             image_path=args.image,
             tile_size=args.tile_size,
@@ -116,7 +115,14 @@ def main():
         
         # Save output if specified
         if args.output:
-            save_results(result_image, args.output)
+            save_results(
+                result_image, 
+                args.output, 
+                image_path=args.image, 
+                boxes=boxes, 
+                classes=classes,
+                class_names=class_names
+            )
         else:
             from models.inference import visualize_results
             visualize_results(result_image, f"Detection on {os.path.basename(args.image)}")

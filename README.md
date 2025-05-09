@@ -29,8 +29,12 @@ Yellow Sticky Trap/
 │   │   └── preprocessing.py  # Phân chia và tiền xử lý hình ảnh
 │   ├── models/               # Mã liên quan đến mô hình
 │   │   ├── __init__.py
-│   │   ├── train.py          # Hàm huấn luyện
-│   │   └── inference.py      # Hàm suy luận
+│   │   ├── inference.py      # Module suy luận và phát hiện
+│   │   └── train.py          # Module huấn luyện
+│   ├── streamlit/            # Giao diện người dùng Streamlit
+│   │   ├── app.py            # Ứng dụng chính
+│   │   ├── run.py            # Script khởi chạy
+│   │   └── requirements.txt  # Yêu cầu thư viện
 │   ├── utils/                # Tiện ích
 │   │   ├── __init__.py
 │   │   └── eda.py            # Công cụ phân tích dữ liệu khám phá
@@ -104,6 +108,24 @@ python src/main.py evaluate --model /đường/dẫn/đến/best.pt --data /đư
 ```bash
 python src/main.py infer --model /đường/dẫn/đến/best.pt --image /đường/dẫn/đến/ảnh.jpg --output /đường/dẫn/đến/kết_quả.jpg
 ```
+
+#### Giao diện Streamlit
+
+Để khởi chạy giao diện người dùng Streamlit:
+
+```bash
+# Cài đặt các thư viện cần thiết
+pip install -r src/streamlit/requirements.txt
+
+# Khởi chạy ứng dụng
+python src/streamlit/run.py
+```
+
+Giao diện Streamlit cho phép:
+- Tải lên hình ảnh bẫy dính
+- Điều chỉnh tham số phát hiện
+- Hiển thị kết quả với hộp giới hạn
+- Tải xuống ảnh đã chú thích và file annotation XML
 
 ## Giấy phép
 
