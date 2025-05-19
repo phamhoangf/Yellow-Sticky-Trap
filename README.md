@@ -1,6 +1,7 @@
 # Nhận Diện Côn Trùng trên Bẫy Dính Màu Vàng
 
 Dự án này cung cấp một quy trình đầy đủ để phát hiện và phân loại côn trùng trong hình ảnh bẫy dính màu vàng sử dụng YOLOv11. Hệ thống sử dụng phương pháp phân chia ảnh (tiling) để xử lý hiệu quả hình ảnh có độ phân giải cao.
+Video giới thiệu: [Video](https://drive.google.com/file/d/1Qhu9cS5swUh4KCS_voypbcpapTx2XOHr/view?usp=sharing)
 
 > **Ghi chú**: Để tái tạo nhanh kết quả, bạn có thể sử dụng file `training-inference.ipynb`.
 
